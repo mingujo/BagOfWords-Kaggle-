@@ -21,5 +21,4 @@ def create_bag_of_centroids(wordlist, word_centroid_map):
         if word in word_centroid_map:
             index = word_centroid_map[word]
             bag_of_centroids[index] += 1
-    # Return the "bag of centroids"
     return bag_of_centroids

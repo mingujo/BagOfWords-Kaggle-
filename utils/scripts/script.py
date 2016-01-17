@@ -24,11 +24,12 @@ from gensim.models import Word2Vec #(for loading #Word2Vec object)
 ############################ Load and Preprocess train data
 train = pd.read_csv("../../data/labeledTrainData.tsv", header=0, delimiter="\t", quoting=3)
 test = pd.read_csv("../../data/TestData.tsv", header=0, delimiter="\t", quoting=3)
-
+# we now use this because word2vec doesn't need labels. this has additional 50000 reviews
 unlabeled_train = pd.read_csv( "../../data/unlabeledTrainData.tsv", header=0, delimiter="\t", quoting=3 )
 
 
 # nltk.download() # find and download 'stopwords' (meaningless words such as 'a', 'is', 'each', 'here')
+
 # To train Word2Vec it is better not to remove stop words because the algorithm relies on the 
 # broader context of the sentence in order to produce high-quality word vectors
 
@@ -74,20 +75,3 @@ print "The shape of the Word2Vec model:"
 print(model.syn0.shape)
 print "The number of rows in syn0 is the number of words in the model's vocabulary, \
 	and the number of columns corresponds to the size of the feature vector"
-
-# clean_train_reviews = []
-
-# # Loop over each review to put all preprocessed string into the list
-# for i in xrange( 0, num_reviews ):
-# 	# Print status update
-#     if( (i+1)%1000 == 0 ):
-#         print "Review %d of %d\n" % (i+1, num_reviews)
-#     clean_train_reviews.append(review_to_words(train["review"][i]))
-
-# # Feature Extraction. Use the 5000 most frequent words
-# vectorizer = CountVectorizer(analyzer = "word", tokenizer = None, preprocessor = None, stop_words = None,\
-#                              max_features = 5000) 
-
-# # Transform training data into feature vectors
-# train_data_features = vectorizer.fit_transform(clean_train_reviews)
-# train_data_features = train_data_features.toarray()
