@@ -95,7 +95,7 @@ for review in clean_test_reviews:
     counter += 1
 
 # Fit a random forest and extract predictions 
-forest = RandomForestClassifier(n_estimators = 100)
+forest = RandomForestClassifier(n_estimators = 200)
 # Fitting the forest may take a few minutes
 print "Fitting a random forest to labeled training data..."
 forest = forest.fit(train_centroids,train["sentiment"])
