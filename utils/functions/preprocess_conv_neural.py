@@ -97,19 +97,6 @@ def tokenize_review(review):
         a preprocessed review
 
     """
-    # review = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", review)     
-    # review = re.sub(r"\'s", " \'s", review) 
-    # review = re.sub(r"\'ve", " \'ve", review) 
-    # review = re.sub(r"n\'t", " n\'t", review) 
-    # review = re.sub(r"\'re", " \'re", review) 
-    # review = re.sub(r"\'d", " \'d", review) 
-    # review = re.sub(r"\'ll", " \'ll", review) 
-    # review = re.sub(r",", " , ", review) 
-    # review = re.sub(r"!", " ! ", review) 
-    # review = re.sub(r"\(", " \( ", review) 
-    # review = re.sub(r"\)", " \) ", review) 
-    # review = re.sub(r"\?", " \? ", review) 
-    # review = re.sub(r"\s{2,}", " ", review) 
     review = review.translate(None, string.punctuation)
     review = review.strip().lower()
     return review
@@ -196,7 +183,8 @@ def get_word_matrix(word_vecs, k=300):
 
 def get_idx_from_sentences(sentence, word_idx_map, max_l=51, kernel_size=5):
     """
-    Transforms sentence into a list of indices. Pad with zeroes.
+    Transforms sentence into a list of indices. 
+    Pad with zeroes.
     """
     x = []
     pad = kernel_size - 1
@@ -214,7 +202,7 @@ def get_idx_from_sentences(sentence, word_idx_map, max_l=51, kernel_size=5):
 
 def make_idx_data(revs, word_idx_map, max_l=51, kernel_size=5):
     """
-    Transforms sentences into a 2-d matrix.
+    Transforms sentences into a 2d matrix.
     """
     train, val, test = [], [], []
     for rev in revs:
