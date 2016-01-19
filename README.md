@@ -18,9 +18,10 @@ Google's Word2Vec is a deep-learning inspired method that focuses on the meaning
 
 ## Directions
 1. Clone the repo: `git clone https://github.com/mingujo/BagOfWords-Kaggle-.git'
-2. Install python dependencies with pip: `pip install -r requirements.txt` 
-3. run `word2vec_model_buildingscript.py` to build 'bag of words' model
-4. run `clustering_script.py` to train, predict, and create a submission file
+2. Create 'data' folder, download provided data from https://www.kaggle.com/c/word2vec-nlp-tutorial/data, and unzip
+3. Install python dependencies with pip: `pip install -r requirements.txt` 
+4. run `utils/scripts/word2vec_model_buildingscript.py` to build 'bag of words' model
+5. run `utils/scripts/clustering_script.py` to train, predict, and create a submission file
 (run `random_forest_script.py` to train and predict without clustering)
 
 ## Issues
