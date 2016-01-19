@@ -60,7 +60,7 @@ print "Training model..."
 model = word2vec.Word2Vec(sentences, workers=4, size=300, min_count = 40, \
             window = 10, sample = 1e-3)
 model.init_sims(replace=True)
-model_name = "300features_40minwords_10context"
+model_name = "../../model/300features_40minwords_10context"
 model.save(model_name)
 
 ## test
@@ -70,7 +70,7 @@ print(model.doesnt_match("france england berlin germany".split()))
 
 ############################ Now we have a trained model with some semantic understanding of words
 # The model is stored in a numpy array
-model = Word2Vec.load("300features_40minwords_10context")
+model = Word2Vec.load("../../model/300features_40minwords_10context")
 print "The shape of the Word2Vec model:"
 print(model.syn0.shape)
 print "The number of rows in syn0 is the number of words in the model's vocabulary, \

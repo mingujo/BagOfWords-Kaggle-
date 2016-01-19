@@ -18,7 +18,7 @@ from gensim.models import Word2Vec #(for loading #Word2Vec object)
 ############################ Load data and model
 train = pd.read_csv("../../data/labeledTrainData.tsv", header=0, delimiter="\t", quoting=3)
 test = pd.read_csv("../../data/TestData.tsv", header=0, delimiter="\t", quoting=3)
-model = Word2Vec.load("300features_40minwords_10context")
+model = Word2Vec.load("../../model/300features_40minwords_10context")
 
 
 
@@ -49,4 +49,4 @@ forest = clf.fit(trainDataVecs, train["sentiment"])
 result = forest.predict(testDataVecs)
 # Write the test results 
 output = pd.DataFrame(data={"id":test["id"], "sentiment":result})
-output.to_csv("../../data/Word2Vec_AverageVectors.csv", index=False, quoting=3)
+output.to_csv("../../submission/Word2Vec_AverageVectors.csv", index=False, quoting=3)
