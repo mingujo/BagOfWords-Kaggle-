@@ -10,13 +10,13 @@ Google's Word2Vec is a deep-learning inspired method that focuses on the meaning
 Compare Google's Word2Vec with TFIDF Vectorizer
 
 ## Steps
-- Google's word2vec
-1. Construct and save a 'Bag of Word' model using 50,000 iMDB movie reviews(.tsv) with Google's word2vec from 'gensim' library
-2. Create clusters of semantically related words (bag of centroids) by clustering (K-means clustering)
-3. Train a random foerest
+#### Google's word2vec
+1) Construct and save a 'Bag of Word' model using 50,000 iMDB movie reviews(.tsv) with Google's word2vec from 'gensim' library
+2) Create clusters of semantically related words (bag of centroids) by clustering (K-means clustering)
+3) Train a random foerest
  --> Accuracy score of 0.85 when submitted to Kaggle
 
-- TFIDF Vectorizer
+#### TFIDF Vectorizer
 1. Choose the hyper parameters and construct TFIDF vectorizer with both labeled and unlabeled train data set
 2. Select the feautres with the top ten percentiles (reduce feature)
 3. Train an ensemble (naive bayes & SGDclassifier)
