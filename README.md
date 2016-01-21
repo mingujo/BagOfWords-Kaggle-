@@ -11,10 +11,9 @@ Compare Google's Word2Vec with TFIDF Vectorizer
 
 ## Steps
 #### Google's word2vec
-1) Construct and save a 'Bag of Word' model using 50,000 iMDB movie reviews(.tsv) with Google's word2vec from 'gensim' library
-2) Create clusters of semantically related words (bag of centroids) by clustering (K-means clustering)
-3) Train a random foerest
- --> Accuracy score of 0.85 when submitted to Kaggle
+1. Construct and save a 'Bag of Word' model using 50,000 iMDB movie reviews(.tsv) with Google's word2vec from 'gensim' library
+2. Create clusters of semantically related words (bag of centroids) by clustering (K-means clustering)
+3. Train a random foerest
 
 #### TFIDF Vectorizer
 1. Choose the hyper parameters and construct TFIDF vectorizer with both labeled and unlabeled train data set
