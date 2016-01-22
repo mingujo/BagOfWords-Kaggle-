@@ -14,6 +14,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import SGDClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.feature_selection import SelectPercentile, f_classif
+from sklearn.cross_validation import train_test_split
+
 
 ############################ Load data
 train = pd.read_csv("../../data/labeledTrainData.tsv", header=0, delimiter="\t", quoting=3)
@@ -41,11 +43,11 @@ for review in test["review"]:
 
 ############################ Create a vectorizer (TFIDF vectorizer)
 print "Vectorizing with TFIDF..."
-# min_df = 2 (document frequency boundary)
-# max_df = 0.95 ()
+# min_df = 2 (document frequency floor)
+# max_df = 0.95 (document frequency ceiling (0.95*total number of documents))
 # max_features = 200000 (number of top 200000 max_features ordered by term frequency)
 # ngram_range = (1,4)   (look up from 1 to 4 near words)
-vectorizer = TfidfVectorizer(min_df=2, max_df=0.95, max_features = 200000, ngram_range = (1, 4),
+vectorizer = TfidfVectorizer(min_df=2, max_df=0.95, max_features = 250000, ngram_range = (1, 4),
                               sublinear_tf = True )
 
 vectorizer = vectorizer.fit(clean_train_reviews + clean_unlabeled_train_reviews)
@@ -62,17 +64,40 @@ reduced_test_data_features = selector.transform(test_data_features).toarray()
 
 
 
+############################ Define Ensemble model
+# Naive Bayes
+model_MNB = MultinomialNB(alpha=0.00005)
+# Stochastic Gradient Descent
+# 'squared hinge' performed better but predict_probability is not avabilable for that one.
+model_SGD = SGDClassifier(loss='modified_huber', random_state=0, shuffle=True)
+
+
+
+############################ Cross Validation
+train_x, test_x, train_y, test_y = train_test_split(reduced_train_data_features, train["sentiment"], 
+                                                    test_size=0.20, random_state=0)
+
+clf1 = model_MNB.fit(train_x, train_y)
+predict_y = clf1.predict(test_x).astype(int)
+print(accuracy_score(test_y, predict_y))
+
+clf2 = model_SGD.fit(train_x, train_y)
+predict_y = clf2.predict(test_x).astype(int)
+print(accuracy_score(test_y, predict_y))
+
+
 ############################ Train an ensemble model
 # classification with discrete features (fits well with tfidf) (word counts for text classification)
-model_MNB = MultinomialNB(alpha=0.00005)
 model_MNB.fit(reduced_train_data_features, train["sentiment"])
-model_SGD = SGDClassifier(loss='modified_huber', n_iter=5, random_state=0, shuffle=True)
 model_SGD.fit(reduced_train_data_features, train["sentiment"] )
 
 
 ############################ Predict label
 p1 = model_MNB.predict_proba(reduced_test_data_features)[:,1]
 p2 = model_SGD.predict_proba(reduced_test_data_features)[:,1]
+
+
+
 
 ############################ Make a submission
 print "Making a submission file..."
