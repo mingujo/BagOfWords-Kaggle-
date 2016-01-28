@@ -1,7 +1,7 @@
 """
 Purpose:
 -----------------------------------------------------------------------------------
-- Random Forest
+- Train a random forest classifier with average feature vectors for each review.
 -----------------------------------------------------------------------------------
 """
 

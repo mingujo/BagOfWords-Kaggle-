@@ -1,7 +1,8 @@
 """
 Purpose:
 -----------------------------------------------------------------------------------
-- K-Means Clustering
+- Perform K-Means Clustering to group the similar sentimental words
+- This will lower the noise within random forestc classifier
 -----------------------------------------------------------------------------------
 """
 

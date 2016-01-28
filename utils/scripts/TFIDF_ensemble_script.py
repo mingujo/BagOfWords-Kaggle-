@@ -2,7 +2,8 @@
 Purpose:
 -----------------------------------------------------------------------------------
 - Preprocess the review data
-- Build a model
+- Build a TFIDF model
+- Store it under model/ folder
 -----------------------------------------------------------------------------------
 """
 
@@ -95,8 +96,6 @@ model_SGD.fit(reduced_train_data_features, train["sentiment"] )
 ############################ Predict label
 p1 = model_MNB.predict_proba(reduced_test_data_features)[:,1]
 p2 = model_SGD.predict_proba(reduced_test_data_features)[:,1]
-
-
 
 
 ############################ Make a submission
